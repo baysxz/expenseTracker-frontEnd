@@ -97,7 +97,7 @@ const AddRecord = (props) => {
             </div>
           </div>
           <button
-            onClick={() => createRecord()}
+            onClick={() => handleAdd()}
             className={`bg-[${buttonColor}] flex items-center justify-center py-2 rounded-3xl text-white`}
             style={{ backgroundColor: buttonColor }}>
             Add Record
