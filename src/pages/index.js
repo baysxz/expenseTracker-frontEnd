@@ -7,7 +7,10 @@ import { FaChevronLeft, FaSearchengin } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
 import RentIcon from "../../public/icons/RentIcon";
 import FoodExpense from "../../public/icons/FoodExpenseIcon";
+
 import AddRecord from "@/components/AddRecord";
+import { Categories } from "@/components/Categories";
+import { Records } from "@/components/Records";
 
 const categories = [
   "Food & Drinks",
@@ -131,6 +134,7 @@ let checked = [
   "true",
   "true",
 ];
+
 const Home = () => {
   const [showAdd, setShowAdd] = useState(false);
 
@@ -141,6 +145,8 @@ const Home = () => {
   const [selectedEyes, setSelectedEyes] = useState(checked);
 
   const [checkedCategories, setCheckedCategories] = useState(categories);
+  console.log(selectedEyes);
+  console.log(checkedCategories);
   const handleCategory = (input, index) => {
     let myCategories = [...selectedEyes];
     if (input == "true") {
@@ -198,8 +204,7 @@ const Home = () => {
               <p> Records </p>
               <button
                 onClick={() => handleAdd()}
-                className="flex gap-1 w-[225px] bg-[#0166FF] rounded-3xl text-white items-center justify-center"
-              >
+                className="flex gap-1 w-[225px] bg-[#0166FF] rounded-3xl text-white items-center justify-center">
                 <PlusSign color="white" /> Add
               </button>
             </div>
@@ -248,16 +253,7 @@ const Home = () => {
                 <p className="font-normal text-base opacity-20"> Clear </p>
               </div>
               <div className="flex flex-col gap-2">
-                {categories.map((category1, index) => {
-                  return (
-                    <div
-                      key={index}
-                      onClick={() => handleCategory(selectedEyes[index], index)}
-                    >
-                      <MyCategories categoryName={category1} />
-                    </div>
-                  );
-                })}
+                <Categories />
               </div>
               <div className="flex gap-2 py-1.5 pl-3 items-center">
                 <PlusSign color={"#0166FF"} />
@@ -297,22 +293,7 @@ const Home = () => {
                     />
                   );
                 })}
-              </div>
-              <p className="font-semibold text-base"> Yesterday </p>
-              <div className="flex flex-col gap-3">
-                {myRecords[1].map((recordToday, index) => {
-                  return (
-                    <OneRecord
-                      key={index}
-                      text={recordToday.text}
-                      image={recordToday.image}
-                      time={recordToday.time}
-                      color={recordToday.color}
-                      money={recordToday.money}
-                      iconColor={recordToday.iconColor}
-                    />
-                  );
-                })}
+                <Records />
               </div>
             </div>
           </div>

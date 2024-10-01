@@ -8,8 +8,7 @@ const OneRecord = (props) => {
           className={`flex justify-center items-center w-10 h-10 rounded-full bg-[${iconColor}]`}
           style={{
             backgroundColor: iconColor,
-          }}
-        >
+          }}>
           {image}
         </div>
 
@@ -18,12 +17,7 @@ const OneRecord = (props) => {
           <p className="font-normal text-xs text-[#6B7280]"> {time} </p>
         </div>
       </div>
-      <p
-        className={`font-semibold text-base text-[${color}]`}
-        style={{ text: color }}
-      >
-        {money}
-      </p>
+      <p className={`font-semibold text-base text-[${color}]`}> {money} </p>
     </div>
   );
 };
