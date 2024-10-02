@@ -8,12 +8,11 @@ import RentIcon from "../../public/icons/RentIcon";
 import FoodExpense from "../../public/icons/FoodExpenseIcon";
 import axios from "axios";
 
-
 const AddRecord = (props) => {
   const { onCloseModal } = props;
-  const [incomeExpense, setIncomeExpense] = useState("Expense")
-  const [name, setName] = useState("")
-  const [amount, setAmount] = useState("")
+  const [incomeExpense, setIncomeExpense] = useState("Expense");
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("");
   const [text, setText] = useState("");
 
   const handleIncomeOrExpense = (props) => {
@@ -25,35 +24,35 @@ const AddRecord = (props) => {
       setIncomeExpense("Expense");
     }
   };
-  const handleName=(e)=>{
-    setName(e.target.value)
-  }
-  console.log(name)
-  const handleAmount=(e)=>{
-    setAmount(e.target.value)
-  }
-  console.log(amount)
-const handleText=(e)=>{
-  setText(e.target.value)
-}
-console.log(text)
-   const handleAdd = async ()=>{await axios.post('http://localhost:8888/record/addRecord', {
-    userId: 3,
-    name: name,
-    amount: amount,
-    transaction: incomeExpense,
-    description: text,
-    categoryid: 9
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })};
-
- 
- 
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
+  console.log(name);
+  const handleAmount = (e) => {
+    setAmount(e.target.value);
+  };
+  console.log(amount);
+  const handleText = (e) => {
+    setText(e.target.value);
+  };
+  console.log(text);
+  const handleAdd = async () => {
+    await axios
+      .post("http://localhost:8888/record/addRecord", {
+        userId: 1,
+        name: name,
+        amount: amount,
+        transaction: incomeExpense,
+        description: text,
+        categoryid: 10,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   const Expensebackground = incomeExpense === "Expense" ? "#0166FF" : "#F3F4F6";
   const Incomebackground = incomeExpense === "Income" ? "#16A34A" : "#F3F4F6";
@@ -92,18 +91,20 @@ console.log(text)
               Income
             </div>
           </div>
-          
+
           <div className="flex flex-col mb-3 gap-[22px]">
-          <div className="flex flex-col py-3 px-4 bg-[#F3F4F6] border border-[#D1D5DB] rounded-xl">
+            <div className="flex flex-col py-3 px-4 bg-[#F3F4F6] border border-[#D1D5DB] rounded-xl">
               <p className="font-normal text-base"> Name </p>
-              <textarea onChange={handleName}
-            placeholder="Write here"
-            className="bg-[#F3F4F6] pt-4 pl-4 border border-[#D1D5DB] w-full h-full rounded-lg"
-          />
+              <textarea
+                onChange={handleName}
+                placeholder="Write here"
+                className="bg-[#F3F4F6] pt-4 pl-4 border border-[#D1D5DB] w-full h-full rounded-lg"
+              />
             </div>
             <div className="flex flex-col py-3 px-4 bg-[#F3F4F6] border border-[#D1D5DB] rounded-xl">
               <p className="font-normal text-base"> Amount </p>
-              <input onChange={handleAmount}
+              <input
+                onChange={handleAmount}
                 type="number"
                 placeholder="₮ 000.00"
                 className="font-normal text-xl bg-[#F3F4F6]"
@@ -145,7 +146,8 @@ console.log(text)
         </div>
         <div className="flex flex-col gap-2 px-6 pb-6 pt-[18px] w-full ">
           <p className="text-[#1F2937]">Description</p>
-          <textarea onChange={handleText}
+          <textarea
+            onChange={handleText}
             placeholder="Write here"
             className="bg-[#F3F4F6] pt-4 pl-4 border border-[#D1D5DB] w-full h-full rounded-lg"
           />
