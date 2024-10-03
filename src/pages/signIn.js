@@ -12,25 +12,39 @@ const SignIn = () => {
     setEmail(e.target.value);
   };
   const handleName = (e) => {
-    setUserName(e.target.value);
+    setName(e.target.value);
   };
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
-  const logIn = async () => {
-    await axios.post("http://localhost:8888/users/addUser"),
-      {
+
+  // const logIn = async () => {
+  //   await axios.post("http://localhost:8888/",
+  //     {
+  //       email: email,
+  //       password: password,
+  //     })
+  //       // .then(function (response) {
+  //       //   console.log(response)
+  //       // })
+  //       console.log(response);
+  //   }
+  //       .catch (error) {
+  //         console.log(error);
+  //       };
+  // };
+  const logIn = () => {
+    axios.post("http://localhost:8888/", {
         email: email,
-        name: name,
         password: password,
-      }
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-  };
+    })
+    .then(function (response) {
+        console.log(response);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+};
   return (
     <div className="flex w-screen h-screen">
       <div className="w-3/5 bg-[#FFFFFF] flex  justify-center items-center">

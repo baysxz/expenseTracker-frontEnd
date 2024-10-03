@@ -7,6 +7,8 @@ import Taxi from "../../public/icons/Taxi";
 import RentIcon from "../../public/icons/RentIcon";
 import FoodExpense from "../../public/icons/FoodExpenseIcon";
 import axios from "axios";
+import { Categories } from "./Categories";
+import Category from "./Category";
 
 const AddRecord = (props) => {
   const { onCloseModal } = props;
@@ -14,6 +16,21 @@ const AddRecord = (props) => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [text, setText] = useState("");
+  const [id, setId] = useState(0);
+  const [categories, setCategories] = useState([])
+ console.log(id);
+ 
+  useEffect(()=>{
+    async function getUser() {
+      try {
+        const response = await axios.get(' http://localhost:8888/category');
+       setCategories(response.data.category)
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    getUser()
+  },[])
 
   const handleIncomeOrExpense = (props) => {
     const { name } = props;
@@ -27,15 +44,17 @@ const AddRecord = (props) => {
   const handleName = (e) => {
     setName(e.target.value);
   };
-  console.log(name);
+ 
   const handleAmount = (e) => {
     setAmount(e.target.value);
   };
-  console.log(amount);
+  
   const handleText = (e) => {
     setText(e.target.value);
   };
-  console.log(text);
+  const OnchangeValue = (e) => {
+    setId(e.target.value)
+  }
 
   const handleAdd = async () => {
     await axios
@@ -45,7 +64,7 @@ const AddRecord = (props) => {
         amount: amount,
         transaction: incomeExpense,
         description: text,
-        categoryid: 10,
+        id: id
       })
       .then(function (response) {
         console.log(response);
@@ -113,10 +132,17 @@ const AddRecord = (props) => {
             </div>
             <div className="flex flex-col gap-2">
               <p> Category </p>
-              <select className="bg-[#F9FAFB] py-3 px-4 text-base font-normal border border-[#D1D5DB] rounded-lg">
+              <select onClick={OnchangeValue} className="bg-[#F9FAFB] py-3 px-4 text-base font-normal border border-[#D1D5DB] rounded-lg">
                 <option defaultChecked> Find or choose category</option>
-                <option className="px-[18px] py-2 flex gap-3">Food</option>
-                <option> Home </option>
+             {
+              categories.map((category)=> {
+                return (  
+                <option key={category.categoryid}
+                value={category.categoryid}
+                >{category.name}</option>
+                )
+              })
+             }
               </select>
             </div>
             <div className="flex gap-2">
@@ -131,6 +157,7 @@ const AddRecord = (props) => {
               <div className="flex flex-col gap-2 w-full">
                 <p>Time</p>
                 <input
+              
                   type="time"
                   defaultValue={`${hour}:${minutes}`}
                   className="py-3 px-4 bg-[#F9FAFB] border border-[#D1D5DB] rounded-lg"
