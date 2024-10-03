@@ -36,6 +36,7 @@ const AddRecord = (props) => {
     setText(e.target.value);
   };
   console.log(text);
+
   const handleAdd = async () => {
     await axios
       .post("http://localhost:8888/record/addRecord", {

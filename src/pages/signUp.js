@@ -2,30 +2,15 @@ import Link from "next/link";
 import Logo from "../../public/icons/Logo";
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "sonner";
+import { useRouter } from "next/router";
 
 const SignUp = () => {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
-
-  const signUpClick = () => {
-    const information = {
-      name: name,
-      email: email,
-      password: password,
-    };
-    if (password !== rePassword) {
-      console.log("Davtsan password buruu baina");
-    } else {
-    }
-    axios.post("http://localhost:8000/user", {
-      email: email,
-      name: name,
-      password: password,
-      avatar_img: "https://i.pravatar.cc/300",
-    });
-  };
 
   const handleName = (event) => {
     setName(event.target.value);
@@ -36,10 +21,33 @@ const SignUp = () => {
   const handlePassword = (event) => {
     setPassword(event.target.value);
   };
-
   const handleRePassword = (event) => {
     setRePassword(event.target.value);
   };
+
+  const clickSignUp = async () => {
+    if (password !== rePassword) {
+      toast("password-oo shalganu");
+      return;
+    }
+    try {
+      const { data } = await axios.post("http://localhost:8888/users", {
+        name: name,
+        email: email,
+        password: password,
+        avatarImg: "https://i.pravatar.cc/300",
+        rePassword: rePassword,
+      });
+
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      toast("amjilttai nervterlee");
+      router.push("/");
+    } catch (error) {
+      toast(error);
+    }
+  };
+
   return (
     <div className="flex w-screen h-screen">
       <div className="w-3/5 bg-[#FFFFFF] flex  justify-center items-center">
@@ -84,9 +92,8 @@ const SignUp = () => {
               placeholder="Re-password"
             />
             <button
-              onClick={() => signUpClick()}
-              className="bg-[#0166FF] justify-center font-normal text-xl flex items-center text-white text-center py-2.5 w-full rounded-3xl"
-            >
+              onClick={clickSignUp}
+              className="bg-[#0166FF] justify-center font-normal text-xl flex items-center text-white text-center py-2.5 w-full rounded-3xl">
               Sign up
             </button>
           </div>

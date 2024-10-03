@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MyCategories from "@/components/Category";
 import PlusSign from "../../public/icons/PlusSign";
 import OneRecord from "../components/OneRecord";
@@ -11,6 +11,7 @@ import FoodExpense from "../../public/icons/FoodExpenseIcon";
 import AddRecord from "@/components/AddRecord";
 import { Categories } from "@/components/Categories";
 import { Records } from "@/components/Records";
+import { useRouter } from "next/router";
 
 const categories = [
   "Food & Drinks",
@@ -136,6 +137,7 @@ let checked = [
 ];
 
 const Home = () => {
+  const router = useRouter();
   const [showAdd, setShowAdd] = useState(false);
 
   const [selected, setSelected] = useState("All");
@@ -145,8 +147,14 @@ const Home = () => {
   const [selectedEyes, setSelectedEyes] = useState(checked);
 
   const [checkedCategories, setCheckedCategories] = useState(categories);
-  console.log(selectedEyes);
-  console.log(checkedCategories);
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (!user) {
+      router.push("/signIn");
+    }
+  }, []);
+
   const handleCategory = (input, index) => {
     let myCategories = [...selectedEyes];
     if (input == "true") {
