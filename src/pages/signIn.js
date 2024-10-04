@@ -2,49 +2,44 @@ import { useState } from "react";
 import Logo from "../../public/icons/Logo";
 import Link from "next/link";
 import axios from "axios";
+import { useRouter } from "next/router";
+import { toast } from "sonner";
 
 const SignIn = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
   };
-  const handleName = (e) => {
-    setName(e.target.value);
-  };
   const handlePassword = (e) => {
     setPassword(e.target.value);
   };
 
-  // const logIn = async () => {
-  //   await axios.post("http://localhost:8888/",
-  //     {
-  //       email: email,
-  //       password: password,
-  //     })
-  //       // .then(function (response) {
-  //       //   console.log(response)
-  //       // })
-  //       console.log(response);
-  //   }
-  //       .catch (error) {
-  //         console.log(error);
-  //       };
-  // };
   const logIn = () => {
-    axios.post("http://localhost:8888/", {
+    axios
+      .post("http://localhost:8888/", {
         email: email,
         password: password,
-    })
-    .then(function (response) {
+      })
+      .then(function (response) {
+        if (response.data.user.length === 1) {
+          localStorage.setItem("user", response.data.user[0].email);
+          console.log(response.data.user[0]);
+        } else {
+          toast.error("error");
+        }
         console.log(response);
-    })
-    .catch(function (error) {
+
+        router.push("/");
+      })
+      .catch(function (error) {
         console.log(error);
-    });
-};
+        toast.error("unsuccessful");
+      })
+      .finally(function () {});
+  };
   return (
     <div className="flex w-screen h-screen">
       <div className="w-3/5 bg-[#FFFFFF] flex  justify-center items-center">
