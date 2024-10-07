@@ -9,6 +9,7 @@ const AddRecord = (props) => {
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [text, setText] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [id, setId] = useState(0);
   const [categories, setCategories] = useState([]);
   console.log("id", id);
@@ -45,8 +46,8 @@ const AddRecord = (props) => {
   const handleText = (e) => {
     setText(e.target.value);
   };
-  const OnchangeValue = (e) => {
-    setId(e.target.value);
+  const handleSelectChange = (e) => {
+    setSelectedCategory(e.target.value);
   };
 
   const handleAdd = async () => {
@@ -57,31 +58,23 @@ const AddRecord = (props) => {
         amount: amount,
         transaction: incomeExpense,
         description: text,
-        categoryid: id,
+        categoryid: selectedCategory,
       })
       .then(function (response) {
+        setAmount(0);
+        setIncomeExpense("Expense");
+        setText("");
+        setSelectedCategory("");
         console.log(response);
       })
       .catch(function (error) {
+        setAmount(0);
+        setIncomeExpense("Expense");
+        setText("");
+        setSelectedCategory("");
         console.log(error);
       });
   };
-
-// const handleExpress = () => {
-//   const filtered = records.map((day)) => day.filter((oneRecord) => oneRecord.money.includes("+"))
-// );
-// console.log(filtered);
-// setRecords(filtered); const handleAll = () => {setRecords(records);}; const handleChange = (option) => {setSelected(option)}; const handleAdd = () => {setShowAdd(!showAdd)}; consgt addRecord = () => {axios.get("http://localhost:8000/transaction", {})
-
-
-
-// const handleAdd = () => { 
-//   const filteeredById = records.map(record) => day.filtee((OneRecord)) => OneRecord.money.unclude("+")
-// }
-
-
-// }
-
 
   const Expensebackground = incomeExpense === "Expense" ? "#0166FF" : "#F3F4F6";
   const Incomebackground = incomeExpense === "Income" ? "#16A34A" : "#F3F4F6";
@@ -142,8 +135,7 @@ const AddRecord = (props) => {
             <div className="flex flex-col gap-2">
               <p> Category </p>
               <select
-                onClick={OnchangeValue}
-                onChange={(e) => setId(e.target.value)}
+                onChange={handleSelectChange}
                 className="bg-[#F9FAFB] py-3 px-4 text-base font-normal border border-[#D1D5DB] rounded-lg">
                 <option defaultChecked> Find or choose category</option>
                 {categories.map((category) => {
