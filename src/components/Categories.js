@@ -1,11 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Category from "./Category";
-import Drink from "../../public/icons/Drink";
-import Shopping from "../../public/icons/Shopping";
-import RentIcon from "../../public/icons/RentIcon";
-import Logo from "../../public/icons/Logo";
-import FoodExpense from "../../public/icons/FoodExpenseIcon";
 
 export const Categories = () => {
   const [categories, setCategories] = useState([]);

@@ -1,14 +1,7 @@
 import { IoClose } from "react-icons/io5";
 import { useEffect, useState } from "react";
-import Drink from "../../public/icons/Drink";
-import Gift from "../../public/icons/Gift";
-import Shopping from "../../public/icons/Shopping";
-import Taxi from "../../public/icons/Taxi";
-import RentIcon from "../../public/icons/RentIcon";
-import FoodExpense from "../../public/icons/FoodExpenseIcon";
 import axios from "axios";
-import { Categories } from "./Categories";
-import Category from "./Category";
+import OneRecord from "./OneRecord";
 
 const AddRecord = (props) => {
   const { onCloseModal } = props;
@@ -18,7 +11,7 @@ const AddRecord = (props) => {
   const [text, setText] = useState("");
   const [id, setId] = useState(0);
   const [categories, setCategories] = useState([]);
-  console.log("iddd", id);
+  console.log("id", id);
 
   useEffect(() => {
     async function getUser() {
@@ -73,6 +66,22 @@ const AddRecord = (props) => {
         console.log(error);
       });
   };
+
+// const handleExpress = () => {
+//   const filtered = records.map((day)) => day.filter((oneRecord) => oneRecord.money.includes("+"))
+// );
+// console.log(filtered);
+// setRecords(filtered); const handleAll = () => {setRecords(records);}; const handleChange = (option) => {setSelected(option)}; const handleAdd = () => {setShowAdd(!showAdd)}; consgt addRecord = () => {axios.get("http://localhost:8000/transaction", {})
+
+
+
+// const handleAdd = () => { 
+//   const filteeredById = records.map(record) => day.filtee((OneRecord)) => OneRecord.money.unclude("+")
+// }
+
+
+// }
+
 
   const Expensebackground = incomeExpense === "Expense" ? "#0166FF" : "#F3F4F6";
   const Incomebackground = incomeExpense === "Income" ? "#16A34A" : "#F3F4F6";

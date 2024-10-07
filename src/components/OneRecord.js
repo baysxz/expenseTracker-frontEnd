@@ -1,9 +1,7 @@
 import moment from "moment";
 import FoodExpense from "../../public/icons/FoodExpenseIcon";
 import Shopping from "../../public/icons/Shopping";
-import RentIcon from "../../public/icons/RentIcon";
 import Taxi from "../../public/icons/Taxi";
-import Drink from "../../public/icons/Drink";
 import Housing from "../../public/icons/Housing";
 import { FaCarRear } from "react-icons/fa6";
 import { FaLaptopCode } from "react-icons/fa";
@@ -11,6 +9,7 @@ import { FaFileInvoiceDollar } from "react-icons/fa";
 import { SiRemedyentertainment } from "react-icons/si";
 import { FaMoneyBill1Wave } from "react-icons/fa6";
 import { CiGift } from "react-icons/ci";
+import { CiShoppingCart } from "react-icons/ci";
 
 const OneRecord = (props) => {
   const { text, image, time, color, money, iconColor } = props;
@@ -20,7 +19,7 @@ const OneRecord = (props) => {
     <div className="w-full px-6 py-3 border bg-white border-[#E5E7EB] items-center justify-between flex rounded-xl">
       <div className="flex gap-4">
         <div
-          className={`flex justify-center items-center w-10 h-10 rounded-full bg-black`}
+          className={`flex justify-center items-center w-10 h-10 rounded-full bg-slate-600`}
           style={{
             backgroundColor: iconColor,
           }}>
@@ -46,7 +45,7 @@ const categoryIcons = [
     name: "Food & Beverages",
     icon: <FoodExpense />,
   },
-  { name: "Shopping", icon: <Shopping /> },
+  { name: "Shopping", icon: <CiShoppingCart />},
   { name: "Housing", icon: <Housing /> },
   { name: "Transportation", icon: <Taxi /> },
   { name: "Vihecle", icon: <FaCarRear /> },
