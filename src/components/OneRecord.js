@@ -10,14 +10,15 @@ import { ImSpoonKnife } from "react-icons/im";
 import { HiMiniShoppingCart } from "react-icons/hi2";
 import { FaGift } from "react-icons/fa6";
 import { BiSolidCarMechanic } from "react-icons/bi";
+import { useEffect, useState } from "react";
 
 const OneRecord = (props) => {
   const { text, image, time, color, money, iconColor } = props;
   const icon = categoryIconByCategoryName(props);
 
   return (
-    <div className='w-full px-6 py-3 border bg-white border-[#E5E7EB] items-center justify-between flex rounded-xl'>
-      <div className='flex gap-4'>
+    <div className="w-full px-6 py-3 border bg-white border-[#E5E7EB] items-center justify-between flex rounded-xl">
+      <div className="flex gap-4">
         <div
           className={`flex justify-center items-center w-10 h-10 rounded-full bg-blue-200`}
           style={{
@@ -25,9 +26,9 @@ const OneRecord = (props) => {
           }}>
           {icon?.icon}
         </div>
-        <div className='flex flex-col'>
-          <p className='font-normal text-base'>{text}</p>
-          <p className='font-normal text-xs text-[#6B7280]'>
+        <div className="flex flex-col">
+          <p className="font-normal text-base">{text}</p>
+          <p className="font-normal text-xs text-[#6B7280]">
             {" "}
             {moment(time).format("HH:mm")}{" "}
           </p>

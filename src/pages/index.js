@@ -12,6 +12,7 @@ import AddRecord from "@/components/AddRecord";
 import { Categories } from "@/components/Categories";
 import { Records } from "@/components/Records";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 const categories = [
   "Food & Drinks",
@@ -27,100 +28,7 @@ const categories = [
   "Income",
   "Others",
 ];
-const records = [
-  [
-    {
-      color: "#23E01F",
-      image: <RentIcon />,
-      time: "14:00",
-      text: "Lending & Renting",
-      money: "+ 1,000₮",
-      iconColor: "#0166FF",
-    },
-    {
-      color: "#F54949",
-      image: <FoodExpense />,
-      time: "14:00",
-      text: "Food & Drinks",
-      money: "- 1,000₮",
-      iconColor: "#FF4545",
-    },
-    {
-      color: "#F54949",
-      image: <FoodExpense />,
-      time: "14:00",
-      text: "Food & Drinks",
-      money: "- 1,000₮",
-      iconColor: "#FF4545",
-    },
-    {
-      color: "#23E01F",
-      image: <RentIcon />,
-      time: "14:00",
-      text: "Lending & Renting",
-      money: "+ 1,000₮",
-      iconColor: "#0166FF",
-    },
-    {
-      color: "#23E01F",
-      image: <RentIcon />,
-      time: "14:00",
-      text: "Lending & Renting",
-      money: "+ 1,000₮",
-      iconColor: "#0166FF",
-    },
-  ],
-  [
-    {
-      color: "#23E01F",
-      image: <RentIcon />,
-      time: "14:00",
-      text: "Lending & Renting",
-      money: "+ 1,000₮",
-      iconColor: "#0166FF",
-    },
-    {
-      color: "#F54949",
-      image: <FoodExpense />,
-      time: "14:00",
-      text: "Food & Drinks",
-      money: "- 1,000₮",
-      iconColor: "#FF4545",
-    },
-    {
-      color: "#F54949",
-      image: <FoodExpense />,
-      time: "14:00",
-      text: "Food & Drinks",
-      money: "- 1,000₮",
-      iconColor: "#FF4545",
-    },
-    {
-      color: "#23E01F",
-      image: <RentIcon />,
-      time: "14:00",
-      text: "Lending & Renting",
-      money: "+ 1,000₮",
-      iconColor: "#0166FF",
-    },
-    {
-      color: "#F54949",
-      image: <FoodExpense />,
-      time: "14:00",
-      text: "Food & Drinks",
-      money: "- 1,000₮",
-      iconColor: "#FF4545",
-    },
-    {
-      color: "#F54949",
-      image: <FoodExpense />,
-      time: "14:00",
-      text: "Food & Drinks",
-      money: "- 1,000₮",
-      iconColor: "#FF4545",
-    },
-  ],
-];
+
 let checked = [
   "true",
   "true",
@@ -141,12 +49,24 @@ const Home = () => {
   const [showAdd, setShowAdd] = useState(false);
 
   const [selected, setSelected] = useState("All");
-  const [myRecords, setRecords] = useState(records);
+  // const [myRecords, setRecords] = useState(records);
 
   const [selectedCategories, setSelectedCategories] = useState(categories);
   const [selectedEyes, setSelectedEyes] = useState(checked);
 
   const [checkedCategories, setCheckedCategories] = useState(categories);
+
+  const [records, setRecords] = useState([]);
+  const [filteredRecords, setFilteredRecords] = useState([]);
+
+  useEffect(() => {
+    const getRecords = async () => {
+      const { data } = await axios.get("http://localhost:8888/userRecord");
+      setRecords(data.record);
+      setFilteredRecords(data.record);
+    };
+    getRecords();
+  }, []);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -171,21 +91,23 @@ const Home = () => {
     }
     setCheckedCategories();
   };
+
   const handleExpense = () => {
-    const filtered = records.map((day) =>
-      day.filter((oneRecord) => oneRecord.money.includes("-"))
+    const filtered = records.filter((oneRecord) =>
+      oneRecord.transaction.includes("Expense")
     );
-    setRecords(filtered);
+
+    setFilteredRecords(filtered);
   };
   const handleIncome = () => {
-    const filtered = records.map((day) =>
-      day.filter((oneRecord) => oneRecord.money.includes("+"))
+    const filtered = records.filter((oneRecord) =>
+      oneRecord.transaction.includes("Income")
     );
-    console.log(filtered);
-    setRecords(filtered);
+
+    setFilteredRecords(filtered);
   };
   const handleAll = () => {
-    setRecords(records);
+    setFilteredRecords(records);
   };
   const handleChange = (option) => {
     setSelected(option);
@@ -288,7 +210,7 @@ const Home = () => {
             <div className="flex flex-col gap-3">
               <p className="font-semibold text-base"> Today </p>
               <div className="flex flex-col gap-3 mb-3">
-                <Records />
+                <Records records={filteredRecords} />
               </div>
             </div>
           </div>

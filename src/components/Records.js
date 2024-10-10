@@ -3,16 +3,17 @@ import { useEffect, useState } from "react";
 import OneRecord from "./OneRecord";
 import moment from "moment";
 
-export const Records = () => {
-  const [records, setRecords] = useState([]);
+export const Records = ({ records }) => {
+  const [symbol, setSymbol] = useState("-");
 
-  useEffect(() => {
-    const getRecords = async () => {
-      const { data } = await axios.get("http://localhost:8888/userRecord");
-      setRecords(data.record);
-    };
-    getRecords();
-  }, []);
+  const handleSymbol = (transaction) => {
+    if (transaction === "Income") {
+      setSymbol("+");
+    } else {
+      setSymbol("-");
+    }
+  };
+  //////+, -, color hiiih
 
   return (
     <div>
@@ -23,6 +24,7 @@ export const Records = () => {
             text={record.name}
             money={record.amount}
             time={record.updatedat}
+            type={record.transaction}
           />
         );
       })}
