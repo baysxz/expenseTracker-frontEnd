@@ -6,13 +6,13 @@ import moment from "moment";
 export const Records = ({ records }) => {
   const [symbol, setSymbol] = useState("-");
 
-  const handleSymbol = (transaction) => {
-    if (transaction === "Income") {
-      setSymbol("+");
-    } else {
-      setSymbol("-");
-    }
-  };
+  // const handleSymbol = (transaction) => {
+  //   if (transaction === "Income") {
+  //     setSymbol("+");
+  //   } else {
+  //     setSymbol("-");
+  //   }
+  // };
   //////+, -, color hiiih
 
   return (
