@@ -11,6 +11,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const handleName = (event) => {
     setName(event.target.value);
@@ -26,8 +27,12 @@ const SignUp = () => {
   };
 
   const clickSignUp = async () => {
+    if (!name) {
+      toast("neree bichne vv");
+      return;
+    }
     if (password !== rePassword) {
-      toast("password-oo shalganu");
+      toast("password-oo shalgana uu");
       return;
     }
     try {
@@ -41,7 +46,7 @@ const SignUp = () => {
 
       localStorage.setItem("user", JSON.stringify(data.user));
 
-      toast("amjilttai nervterlee");
+      toast("amjilttai nevterlee");
       router.push("/");
     } catch (error) {
       toast(error);

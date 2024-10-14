@@ -13,7 +13,7 @@ export const Records = ({ records }) => {
   //     setSymbol("-");
   //   }
   // };
-  //////+, -, color hiiih
+  //////+, -, color
 
   return (
     <div>
