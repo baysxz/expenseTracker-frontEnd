@@ -1,12 +1,8 @@
 import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
-import MyCategories from "@/components/Category";
 import PlusSign from "../../public/icons/PlusSign";
-import OneRecord from "../components/OneRecord";
 import { FaChevronLeft, FaSearchengin } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
-import RentIcon from "../../public/icons/RentIcon";
-import FoodExpense from "../../public/icons/FoodExpenseIcon";
 
 import AddRecord from "@/components/AddRecord";
 import { Categories } from "@/components/Categories";
@@ -47,6 +43,8 @@ let checked = [
 const Home = () => {
   const router = useRouter();
   const [showAdd, setShowAdd] = useState(false);
+
+  const [showAddCategory, setShowAddCategory] = useState(false);
 
   const [selected, setSelected] = useState("All");
   // const [myRecords, setRecords] = useState(records);
@@ -116,6 +114,10 @@ const Home = () => {
   const handleAdd = () => {
     setShowAdd(!showAdd);
   };
+
+  const handleAddCategory = () => {
+    setShowAddCategory(!showAddCategory);
+  };
   // const opacity = showAdd === false ? "opacity-100" : "opacity-100";
   return (
     // <div className="flex justify-center items-center flex-col">
@@ -127,7 +129,6 @@ const Home = () => {
       )}
       <div className={`bg-[#F3F4F6] flex flex-col gap-8 items-center relative`}>
         <Navbar />
-
         <div className="flex gap-6">
           <div className="bg-white flex flex-col px-6 py-4 w-[282px] gap-6 rounded-xl h-fit border border-[#E5E7EB]">
             <div className="flex flex-col gap-6">
@@ -185,8 +186,15 @@ const Home = () => {
               <div className="flex flex-col gap-2">
                 <Categories />
               </div>
+
               <div className="flex gap-2 py-1.5 pl-3 items-center">
-                <PlusSign color={"#0166FF"} />
+                {showAddCategory && (
+                  <div>
+                    <AddCategory onCloseModal={handleAddCategory} />
+                  </div>
+                )}
+                <PlusSign color={"#0166FF"} onclick={() => handleAddCategory} />
+
                 <p>Add category </p>
               </div>
             </div>

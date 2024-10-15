@@ -1,7 +1,6 @@
 import { IoClose } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import OneRecord from "./OneRecord";
 
 const AddRecord = (props) => {
   const { onCloseModal } = props;
@@ -17,7 +16,7 @@ const AddRecord = (props) => {
   useEffect(() => {
     async function getUser() {
       try {
-        const response = await axios.get(" http://localhost:8888/category");
+        const response = await axios.get("http://localhost:8888/category");
         setCategories(response.data.category);
       } catch (error) {
         console.error(error);
