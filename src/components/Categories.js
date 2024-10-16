@@ -7,9 +7,11 @@ export const Categories = () => {
 
   useEffect(() => {
     const getCategories = async () => {
-      await axios.get("http://localhost:8888/category").then((response) => {
-        setCategories(response.data?.category);
-      });
+      await axios
+        .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/category`)
+        .then((response) => {
+          setCategories(response.data?.category);
+        });
     };
     getCategories();
   }, []);
@@ -27,14 +29,3 @@ export const Categories = () => {
     </div>
   );
 };
-
-// const categoryIconsMap = {
-//   food: <di>food icon</di>,
-//   taxi: <di>food icon</di>,
-// };
-
-// const recordIcon = categoryIconsMap[category.name] || <div>record icon </div>
-
-// <div>
-//   {recordIcon}
-// </div>

@@ -13,7 +13,7 @@ import { BiSolidCarMechanic } from "react-icons/bi";
 import { useEffect, useState } from "react";
 
 const OneRecord = (props) => {
-  const { text, image, time, color, money, iconColor } = props;
+  const { text, time, color, money, iconColor } = props;
   const icon = categoryIconByCategoryName(props);
 
   return (
@@ -30,7 +30,7 @@ const OneRecord = (props) => {
           <p className="font-normal text-base">{text}</p>
           <p className="font-normal text-xs text-[#6B7280]">
             {" "}
-            {moment(time).format("HH:mm")}{" "}
+            {moment(time).format("HH:mm")}
           </p>
         </div>
       </div>

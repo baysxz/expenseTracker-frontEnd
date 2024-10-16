@@ -16,7 +16,9 @@ const AddRecord = (props) => {
   useEffect(() => {
     async function getUser() {
       try {
-        const response = await axios.get("http://localhost:8888/category");
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/category`
+        );
         setCategories(response.data.category);
       } catch (error) {
         console.error(error);
@@ -51,7 +53,7 @@ const AddRecord = (props) => {
 
   const handleAdd = async () => {
     await axios
-      .post("http://localhost:8888/record/addRecord", {
+      .post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/record/addRecord`, {
         userId: "1",
         name: name,
         amount: amount,

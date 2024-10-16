@@ -21,7 +21,8 @@ const handleImg = (e) => {
 
 const handleAddCategory = async () => {
   await axios
-    .post("http://localhost:8888/category/addCategory", {
+    .post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/category/addCategory`, {
+      categoryId: id,
       name: name,
       description: description,
       categoryImg: categoryImg,

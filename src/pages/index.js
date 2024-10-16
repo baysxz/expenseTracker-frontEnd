@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import PlusSign from "../../public/icons/PlusSign";
 import { FaChevronLeft, FaSearchengin } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
+import OneRecord from "@/components/OneRecord";
 
 import AddRecord from "@/components/AddRecord";
 import { Categories } from "@/components/Categories";
@@ -59,7 +60,9 @@ const Home = () => {
 
   useEffect(() => {
     const getRecords = async () => {
-      const { data } = await axios.get("http://localhost:8888/userRecord");
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/record`
+      );
       setRecords(data.record);
       setFilteredRecords(data.record);
     };
@@ -120,7 +123,6 @@ const Home = () => {
   };
   // const opacity = showAdd === false ? "opacity-100" : "opacity-100";
   return (
-    // <div className="flex justify-center items-center flex-col">
     <div>
       {showAdd && (
         <div className="z-30 fixed top-0 left-0 right-0 bottom-0 bg-gray-400 flex justify-center items-center">

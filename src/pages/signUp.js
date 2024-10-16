@@ -36,13 +36,16 @@ const SignUp = () => {
       return;
     }
     try {
-      const { data } = await axios.post("http://localhost:8888/users", {
-        name: name,
-        email: email,
-        password: password,
-        avatarImg: "https://i.pravatar.cc/300",
-        rePassword: rePassword,
-      });
+      const { data } = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/users`,
+        {
+          name: name,
+          email: email,
+          password: password,
+          avatarImg: "https://i.pravatar.cc/300",
+          rePassword: rePassword,
+        }
+      );
 
       localStorage.setItem("user", JSON.stringify(data.user));
 
