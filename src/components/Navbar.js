@@ -20,7 +20,9 @@ const Navbar = (props) => {
           className="bg-[#0166FF] py-1.5 px-3 text-white rounded-3xl text-base">
           + Record
         </button>
-        <div className="rounded-full w-10 h-10 bg-[url('/images/Profile.jpeg')]"></div>
+        <div>
+          <img className="rounded-full w-10 h-10 " src="/images/Profile.jpeg" />
+        </div>
       </div>
     </div>
   );

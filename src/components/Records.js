@@ -4,6 +4,7 @@ import OneRecord from "./OneRecord";
 import moment from "moment";
 
 export const Records = ({ records }) => {
+  // console.log(records);
   return (
     <div>
       {records.map((record) => {

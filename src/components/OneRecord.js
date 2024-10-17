@@ -13,14 +13,16 @@ import { BiSolidCarMechanic } from "react-icons/bi";
 import { useEffect, useState } from "react";
 
 const OneRecord = (props) => {
-  const { text, time, color, money, iconColor } = props;
+  const { text, time, color, money, type } = props;
   const icon = categoryIconByCategoryName(props);
-
+  const expenseSymbol = type === "Income" ? "+" : "-";
+  const iconColor = type === "Expense" ? "#0166FF" : "#16A34A";
+  // console.log(type);
   return (
     <div className="w-full px-6 py-3 border bg-white border-[#E5E7EB] items-center justify-between flex rounded-xl">
       <div className="flex gap-4">
         <div
-          className={`flex justify-center items-center w-10 h-10 rounded-full bg-blue-200`}
+          className={`flex justify-center items-center w-10 h-10 rounded-full`}
           style={{
             backgroundColor: iconColor,
           }}>
@@ -34,7 +36,13 @@ const OneRecord = (props) => {
           </p>
         </div>
       </div>
-      <p className={`font-semibold text-base text-[${color}]`}> {money} </p>
+      <p
+        className={`font-semibold text-base ${
+          type === "Income" ? "text-green-500" : "text-blue-500"
+        } `}>
+        {expenseSymbol}
+        {money}
+      </p>
     </div>
   );
 };

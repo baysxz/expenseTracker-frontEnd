@@ -3,13 +3,12 @@ import { useEffect, useState } from "react";
 import PlusSign from "../../public/icons/PlusSign";
 import { FaChevronLeft, FaSearchengin } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
-import OneRecord from "@/components/OneRecord";
-
 import AddRecord from "@/components/AddRecord";
 import { Categories } from "@/components/Categories";
 import { Records } from "@/components/Records";
 import { useRouter } from "next/router";
 import axios from "axios";
+import AddCategory from "@/components/AddCategory";
 
 const categories = [
   "Food & Drinks",
@@ -121,7 +120,6 @@ const Home = () => {
   const handleAddCategory = () => {
     setShowAddCategory(!showAddCategory);
   };
-  // const opacity = showAdd === false ? "opacity-100" : "opacity-100";
   return (
     <div>
       {showAdd && (
@@ -189,15 +187,20 @@ const Home = () => {
                 <Categories />
               </div>
 
-              <div className="flex gap-2 py-1.5 pl-3 items-center">
-                {showAddCategory && (
-                  <div>
-                    <AddCategory onCloseModal={handleAddCategory} />
-                  </div>
-                )}
-                <PlusSign color={"#0166FF"} onclick={() => handleAddCategory} />
-
-                <p>Add category </p>
+              <div className="flex flex-col gap-2 py-1.5 pl-3 items-center">
+                <div>
+                  {showAddCategory && (
+                    <div>
+                      <AddCategory onCloseModal={handleAddCategory} />
+                    </div>
+                  )}
+                </div>
+                <div className="flex flex-row">
+                  <button onClick={handleAddCategory}>
+                    <PlusSign color={"#0166FF"} />
+                  </button>
+                  <p>Add category </p>
+                </div>
               </div>
             </div>
           </div>
