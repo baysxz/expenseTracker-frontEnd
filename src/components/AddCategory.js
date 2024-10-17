@@ -48,30 +48,30 @@ const AddCategory = (props) => {
 
   return (
     <>
-      <div className="flex flex-col gap-2">
+      <div className='flex flex-col gap-2'>
         <h3>Add Category</h3>
-        <div className="flex flex-col">
+        <div className='flex flex-col'>
           <p>Name</p>
           <textarea
             onChange={handleCategoryName}
-            type="text"
-            placeholder="Name"
-            className="input input-bordered w-full max-w-xs"
+            type='text'
+            placeholder='Name'
+            className='input input-bordered w-full max-w-xs'
           />
         </div>
-        <div className="flex flex-col">
-          <p className="text-[#1F2937]">Description</p>
+        <div className='flex flex-col'>
+          <p className='text-[#1F2937]'>Description</p>
           <textarea
             onChange={handleDescription}
-            placeholder="Write here"
-            className="bg-[#F3F4F6] pt-4 pl-4 border border-[#D1D5DB] w-full h-full rounded-lg"
+            placeholder='Write here'
+            className='bg-[#F3F4F6] pt-4 pl-4 border border-[#D1D5DB] w-full h-full rounded-lg'
           />
         </div>
         <button
           onClick={handleAddCategory}
           className={`bg-[${buttonColor}] flex items-center justify-center py-2 rounded-3xl text-white`}
           style={{ backgroundColor: buttonColor }}>
-          Add Record
+          Add Category
         </button>
       </div>
     </>
