@@ -50,11 +50,24 @@ const AddRecord = (props) => {
   const handleSelectChange = (e) => {
     setSelectedCategory(e.target.value);
   };
+  console.log(
+    "name",
+    name,
+    "une",
+    amount,
+    "type",
+    incomeExpense,
+    "text",
+    text,
+    "categoryid",
+    selectedCategory
+  );
 
   const handleAdd = async () => {
+    const userid = localStorage.getItem("user");
     await axios
       .post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/record/addRecord`, {
-        userId: "1",
+        userId: userid,
         name: name,
         amount: amount,
         transaction: incomeExpense,

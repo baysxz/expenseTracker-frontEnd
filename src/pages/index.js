@@ -57,6 +57,9 @@ const Home = () => {
   const [records, setRecords] = useState([]);
   const [filteredRecords, setFilteredRecords] = useState([]);
 
+  const [sort, setSort] = useState(true);
+  const [sortRecord, setSortRecord] = useState("");
+
   useEffect(() => {
     const getRecords = async () => {
       const { data } = await axios.get(
@@ -64,6 +67,7 @@ const Home = () => {
       );
       setRecords(data.record);
       setFilteredRecords(data.record);
+      setSortRecord(data.record);
     };
     getRecords();
   }, []);
@@ -74,23 +78,6 @@ const Home = () => {
       router.push("/signIn");
     }
   }, []);
-
-  const handleCategory = (input, index) => {
-    let myCategories = [...selectedEyes];
-    if (input == "true") {
-      myCategories[index] = "false";
-    } else {
-      myCategories[index] = "true";
-    }
-    setSelectedEyes(myCategories);
-    let filteredCategories = [];
-    for (let i = 0; i < categories.length; i++) {
-      if (selectedEyes[i] == "true") {
-        filteredCategories.push(selectedCategories[i]);
-      }
-    }
-    setCheckedCategories();
-  };
 
   const handleExpense = () => {
     const filtered = records.filter((oneRecord) =>

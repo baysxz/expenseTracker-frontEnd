@@ -34,7 +34,6 @@ export const Categories = () => {
     });
     return setCategories(checkedCategories);
   };
-  // console.log(categories);
 
   return (
     <div>

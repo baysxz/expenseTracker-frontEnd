@@ -44,7 +44,6 @@ const Records = () => {
   const [showAdd, setShowAdd] = useState(false);
 
   const [selected, setSelected] = useState("All");
-  const [myRecords, setRecords] = useState(records);
 
   const [selectedCategories, setSelectedCategories] = useState(categories);
   const [selectedEyes, setSelectedEyes] = useState(checked);
@@ -196,7 +195,7 @@ const Records = () => {
             </div>
             <div className="flex flex-col gap-3">
               <p className="font-semibold text-base"> Today </p>
-              <div className="flex flex-col gap-3 mb-3">
+              {/* <div className="flex flex-col gap-3 mb-3">
                 {myRecords[0].map((recordToday, index) => {
                   return (
                     <OneRecord
@@ -210,9 +209,9 @@ const Records = () => {
                     />
                   );
                 })}
-              </div>
+              </div> */}
               <p className="font-semibold text-base"> Yesterday </p>
-              <div className="flex flex-col gap-3">
+              {/* <div className="flex flex-col gap-3">
                 {myRecords[1].map((recordToday, index) => {
                   return (
                     <OneRecord
@@ -226,7 +225,7 @@ const Records = () => {
                     />
                   );
                 })}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

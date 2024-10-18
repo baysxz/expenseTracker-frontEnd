@@ -25,7 +25,7 @@ const SignIn = () => {
       })
       .then(function (response) {
         if (response.data.user.length === 1) {
-          localStorage.setItem("user", response.data.user[0].email);
+          localStorage.setItem("user", response.data.user[0].userid);
           console.log(response.data.user[0]);
         } else {
           toast.error("error");

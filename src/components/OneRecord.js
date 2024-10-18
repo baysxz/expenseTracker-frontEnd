@@ -32,7 +32,7 @@ const OneRecord = (props) => {
           <p className="font-normal text-base">{text}</p>
           <p className="font-normal text-xs text-[#6B7280]">
             {" "}
-            {moment(time).format("HH:mm")}
+            {moment(time).format("LLL")}
           </p>
         </div>
       </div>
@@ -54,7 +54,7 @@ const categoryIcons = [
   { name: "Shopping", icon: <HiMiniShoppingCart /> },
   { name: "Housing", icon: <FaHouseChimneyUser /> },
   { name: "Transportation", icon: <BsTaxiFrontFill /> },
-  { name: "Vihecle", icon: <BiSolidCarMechanic /> },
+  { name: "Vehicle", icon: <BiSolidCarMechanic /> },
   { name: "Life & Entertainment", icon: <SiRemedyentertainment /> },
   { name: "Communication, PC", icon: <FaLaptopCode /> },
   { name: "Investments", icon: <FaFileInvoiceDollar /> },
