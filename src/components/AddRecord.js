@@ -73,6 +73,7 @@ const AddRecord = (props) => {
         transaction: incomeExpense,
         description: text,
         categoryid: selectedCategory,
+        createdat: createdat,
       })
       .then(function (response) {
         setAmount(0);
@@ -117,13 +118,15 @@ const AddRecord = (props) => {
             <div
               onClick={() => handleIncomeOrExpense("Expense")}
               className={`py-2 px-[55.5px] ${textColorExpense} font-normal text-base rounded-3xl bg-[${Expensebackground}]`}
-              style={{ backgroundColor: Expensebackground }}>
+              style={{ backgroundColor: Expensebackground }}
+            >
               Expense
             </div>
             <div
               onClick={() => handleIncomeOrExpense("Income")}
               className={`py-2 px-[55.5px] ${textColorIncome} font-normal text-base rounded-3xl bg-[${Incomebackground}]`}
-              style={{ backgroundColor: Incomebackground }}>
+              style={{ backgroundColor: Incomebackground }}
+            >
               Income
             </div>
           </div>
@@ -150,13 +153,15 @@ const AddRecord = (props) => {
               <p> Category </p>
               <select
                 onChange={handleSelectChange}
-                className="bg-[#F9FAFB] py-3 px-4 text-base font-normal border border-[#D1D5DB] rounded-lg">
+                className="bg-[#F9FAFB] py-3 px-4 text-base font-normal border border-[#D1D5DB] rounded-lg"
+              >
                 <option defaultChecked> Find or choose category</option>
                 {categories.map((category) => {
                   return (
                     <option
                       key={category.categoryid}
-                      value={category.categoryid}>
+                      value={category.categoryid}
+                    >
                       {category.name}
                     </option>
                   );
@@ -185,7 +190,8 @@ const AddRecord = (props) => {
           <button
             onClick={handleAdd}
             className={`bg-[${buttonColor}] flex items-center justify-center py-2 rounded-3xl text-white`}
-            style={{ backgroundColor: buttonColor }}>
+            style={{ backgroundColor: buttonColor }}
+          >
             Add Record
           </button>
         </div>

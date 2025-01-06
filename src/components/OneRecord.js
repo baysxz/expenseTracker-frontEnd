@@ -17,7 +17,7 @@ const OneRecord = (props) => {
   const icon = categoryIconByCategoryName(props);
   const expenseSymbol = type === "Income" ? "+" : "-";
   const iconColor = type === "Expense" ? "#0166FF" : "#16A34A";
-  // console.log(type);
+
   return (
     <div className="w-full px-6 py-3 border bg-white border-[#E5E7EB] items-center justify-between flex rounded-xl">
       <div className="flex gap-4">
@@ -25,7 +25,8 @@ const OneRecord = (props) => {
           className={`flex justify-center items-center w-10 h-10 rounded-full`}
           style={{
             backgroundColor: iconColor,
-          }}>
+          }}
+        >
           {icon?.icon}
         </div>
         <div className="flex flex-col">
@@ -39,7 +40,8 @@ const OneRecord = (props) => {
       <p
         className={`font-semibold text-base ${
           type === "Income" ? "text-green-500" : "text-blue-500"
-        } `}>
+        } `}
+      >
         {expenseSymbol}
         {money}
       </p>

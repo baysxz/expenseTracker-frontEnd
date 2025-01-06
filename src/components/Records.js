@@ -1,10 +1,6 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import OneRecord from "./OneRecord";
-import moment from "moment";
 
 export const Records = ({ records }) => {
-  // console.log(records);
   return (
     <div>
       {records.map((record) => {
@@ -13,7 +9,7 @@ export const Records = ({ records }) => {
             key={record.id}
             text={record.name}
             money={record.amount}
-            time={record.updatedat}
+            time={record.createdat}
             type={record.transaction}
           />
         );

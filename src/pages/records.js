@@ -2,12 +2,8 @@ import Navbar from "../components/Navbar";
 import { useState, useEffect } from "react";
 import MyCategories from "@/components/Category";
 import PlusSign from "../../public/icons/PlusSign";
-import OneRecord from "../components/OneRecord";
 import { FaChevronLeft, FaSearchengin } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
-import RentIcon from "../../public/icons/RentIcon";
-import FoodExpense from "../../public/icons/FoodExpenseIcon";
-
 import AddRecord from "@/components/AddRecord";
 import axios from "axios";
 
@@ -43,12 +39,15 @@ let checked = [
 const Records = () => {
   const [showAdd, setShowAdd] = useState(false);
 
+  const [showAddCategory, setShowAddCategory] = useState(false);
+
   const [selected, setSelected] = useState("All");
 
   const [selectedCategories, setSelectedCategories] = useState(categories);
   const [selectedEyes, setSelectedEyes] = useState(checked);
 
   const [checkedCategories, setCheckedCategories] = useState(categories);
+  const [filteredRecords, setFilteredRecords] = useState([]);
 
   const handleCategory = (input, index) => {
     let myCategories = [...selectedEyes];
@@ -110,7 +109,8 @@ const Records = () => {
               <p> Records </p>
               <button
                 onClick={() => handleAdd()}
-                className="flex gap-1 w-[225px] bg-[#0166FF] rounded-3xl text-white items-center justify-center">
+                className="flex gap-1 w-[225px] bg-[#0166FF] rounded-3xl text-white items-center justify-center"
+              >
                 <PlusSign color="white" /> Add
               </button>
             </div>
@@ -163,9 +163,8 @@ const Records = () => {
                   return (
                     <div
                       key={index}
-                      onClick={() =>
-                        handleCategory(selectedEyes[index], index)
-                      }>
+                      onClick={() => handleCategory(selectedEyes[index], index)}
+                    >
                       <MyCategories categoryName={category1} />
                     </div>
                   );
@@ -210,22 +209,9 @@ const Records = () => {
                   );
                 })}
               </div> */}
+              <Records />
+
               <p className="font-semibold text-base"> Yesterday </p>
-              {/* <div className="flex flex-col gap-3">
-                {myRecords[1].map((recordToday, index) => {
-                  return (
-                    <OneRecord
-                      key={index}
-                      text={recordToday.text}
-                      image={recordToday.image}
-                      time={recordToday.time}
-                      color={recordToday.color}
-                      money={recordToday.money}
-                      iconColor={recordToday.iconColor}
-                    />
-                  );
-                })}
-              </div> */}
             </div>
           </div>
         </div>
